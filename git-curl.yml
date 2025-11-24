@@ -28,7 +28,7 @@
     
   - name: Show Curl using curl_output
     debug:
-      msg: "curl_output.stdout"
+      msg: "{{ curl_output.stdout }}"
 
     
 
