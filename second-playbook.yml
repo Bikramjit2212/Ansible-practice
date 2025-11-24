@@ -1,0 +1,16 @@
+- name: Run task on local Machine
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Create a Sample Directory
+    file:
+      path: /mnt/g/pw try/ansible/ansible-test-directory
+      state: directory
+
+  - name: Create Test File
+    copy:
+      dest: /mnt/g/pw try/ansible/ansible-test-directory/hello.txt
+      content: "this is a test file"
+
+      

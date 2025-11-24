@@ -1,0 +1,40 @@
+- name: Install Git and Curl
+  hosts: aws1
+  become: yes
+
+  tasks:
+  - name: Update APT package index
+    apt:
+      update_cache: yes
+
+  - name: Install Git and Curl 
+    apt:
+      name: 
+        - Git
+        - Curl
+      state: present
+
+  - name: Check Git Version
+    ansible.builtin.command: git --version
+    register: git_version_output
+    changed_when: false
+
+  - name: Display Git Version
+    ansible.builtin.debug:
+      msg: "Git version installed: {{ git_version_output.stdout }}"
+
+  - name: Check Curl Command 
+    ansible.builtin.command: curl --version
+    register: curl_version_output
+    changed_when: false
+    
+  - name: Display Curl Version
+    ansible.builtin.debug:
+      # Curl's output typically spans multiple lines; we use [0] to get the first line (summary)
+      msg: "Curl version installed (summary): {{ curl_version_output.stdout_lines[0] }}"
+
+    
+
+
+
+      
